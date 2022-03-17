@@ -7,6 +7,7 @@ from tensorflow.python.framework import ops
 import random
 import json
 from tflearn.optimizers import Adam
+import jsonify
 
 ops.reset_default_graph()
 net = tflearn.input_data(shape=[None, 64])
@@ -62,23 +63,36 @@ def bag_of_words(s, kata):
 
 def chat():
 	print("Halo Human Selamat Datang! (tekan ketik untuk mengakhiri)")
-	while  True:
-		inp = input("HUMAN: ")
+	while True:
+		inp = input("Request: ")
 		if inp.lower()=="0":
 			break
 
 		result = model.predict([bag_of_words(inp,words)])[0]
 		result_index = numpy.argmax(result)
 		tag = labels[result_index]
-
+		print(result[result_index])
 		if result[result_index] > 0.80:
 			for tg in data["knowledge"]:
 				if tg["tag"] == tag:
 					responses = tg['responses']
 
-			print("AI: ",random.choice(responses))
+			print("AI Response: ",random.choice(responses))
 		else:
 			print("Maaf saya tidak mengerti, silahkan pertanyaan lain")
+
+# get response for api
+def get_response(inp):
+	result = model.predict([bag_of_words(inp,words)])[0]
+	result_index = numpy.argmax(result)
+	tag = labels[result_index]
+	if result[result_index] > 0.80:
+		for tg in data["knowledge"]:
+			if tg["tag"] == tag:
+				responses = tg['responses']
+		return random.choice(responses),result[result_index]
+	else:
+		return "maaf saya tidak mengerti, silahkan pertanyaan lain",result[result_index]
 
 if __name__ == "__main__":
     print("\n")
