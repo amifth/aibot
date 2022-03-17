@@ -45,7 +45,6 @@ labels = sorted(labels)
 # print(labels)
 # print(words)
 
-# Pembuatan bag of words
 def bag_of_words(s, kata):
 	bag = [0 for _ in range(len(kata))]
 
@@ -62,7 +61,7 @@ def bag_of_words(s, kata):
 	return numpy.array(bag)
 
 def chat():
-	print("Halo Human Selamat Datang! (tekan ketik untuk mengakhiri)")
+	print("Halo Human Selamat Datang! Press 0 for end session")
 	while True:
 		inp = input("Request: ")
 		if inp.lower()=="0":
