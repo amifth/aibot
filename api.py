@@ -15,7 +15,6 @@ def response_to_user():
     print(userText)
     res = get_response(userText)
     return str(res[0])
-    # return str(englishBot.get_response(userText))
 
 @app.route("/predict", methods=['POST'])
 def get_bot_response():
