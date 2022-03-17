@@ -14,13 +14,13 @@
       
       response
       {
+          "status": 200,
+          "message": "Successfully!",
+          "errors": null,
           "data": [
               {
                   "accuracy": "0.9852094",
                   "ai_response": "Halo ka, saat ini AIBot sedang Open Positions untuk Role Engineering, Product team dan AI Team, untuk culture nya kami startup enviroment, lebih detailnya kunjungi AIBot.id"
               }
-          ],
-          "errors": null,
-          "message": "Successfully!",
-          "status": 200
+          ]
       }
